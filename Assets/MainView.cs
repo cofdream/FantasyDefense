@@ -13,14 +13,14 @@ public class MainView : MonoBehaviour
     {
         StartBtn.onClick.AddListener(DisableView);
         QuitBtn.onClick.AddListener(OnQuiteBtn);
-        UIEventDisatcher.Dispatcher.Add((byte)UIEventType.OpenMainView, OpenView);
+        UIGlobalEvent.Dispatcher.Add((byte)UIEventType.OpenMainView, OpenView);
     }
 
     private void OnDestroy()
     {
         StartBtn.onClick.RemoveListener(DisableView);
         QuitBtn.onClick.RemoveListener(OnQuiteBtn);
-        UIEventDisatcher.Dispatcher.Remove((byte)UIEventType.OpenMainView, OpenView);
+        UIGlobalEvent.Dispatcher.Remove((byte)UIEventType.OpenMainView, OpenView);
     }
 
     void OpenView(byte type)
@@ -30,7 +30,7 @@ public class MainView : MonoBehaviour
     void DisableView()
     {
         gameObject.SetActive(false);
-        UIEventDisatcher.Dispatcher.Invoke((byte)UIEventType.OpenArchivesView);
+        UIGlobalEvent.Dispatcher.Invoke((byte)UIEventType.OpenArchivesView);
     }
     void OnQuiteBtn()
     {
