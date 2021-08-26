@@ -17,5 +17,4 @@ public class UIGlobalEvent
 {
     public static EventArgDispatcher<byte> Dispatcher { get; private set; } = new EventArgDispatcher<byte>();
 
-
 }

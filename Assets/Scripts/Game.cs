@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-
-    void Start()
+    void Awake()
     {
 
+    }
+    private void Start()
+    {
+        UIPanelFactory.GetPanel(UIPanelType.MainPanel).Show();
     }
 
     void Update()

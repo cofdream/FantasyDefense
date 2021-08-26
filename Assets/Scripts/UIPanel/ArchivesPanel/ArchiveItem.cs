@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ArchiveView : MonoBehaviour
+public class ArchiveItem : MonoBehaviour
 {
     public Button RemoveBtn;
     public Button SelectBtn;
