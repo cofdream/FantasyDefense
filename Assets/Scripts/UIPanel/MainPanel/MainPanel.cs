@@ -15,18 +15,18 @@ public sealed class MainPanel : IUIPanel
 
     private void InitView()
     {
-        view.StartBtn.onClick.AddListener(Hide);
-        view.ContuineBtn.onClick.AddListener(Contuine);
-        view.InfoBtn.onClick.AddListener(Info);
-        view.QuitBtn.onClick.AddListener(this.OnQuiteBtn);
+        view.StartBtn.onClick.AddListener(StartBtn);
+        view.ContuineBtn.onClick.AddListener(ContuineBtn);
+        view.InfoBtn.onClick.AddListener(InfoBtn);
+        view.QuitBtn.onClick.AddListener(this.QuiteBtn);
         UIGlobalEvent.Dispatcher.Add((byte)UIEventType.OpenMainView, OpenView);
     }
     private void DisposeView()
     {
-        view.StartBtn.onClick.RemoveListener(Hide);
-        view.ContuineBtn.onClick.RemoveListener(Contuine);
-        view.InfoBtn.onClick.RemoveListener(Info);
-        view.QuitBtn.onClick.RemoveListener(OnQuiteBtn);
+        view.StartBtn.onClick.RemoveListener(StartBtn);
+        view.ContuineBtn.onClick.RemoveListener(ContuineBtn);
+        view.InfoBtn.onClick.RemoveListener(InfoBtn);
+        view.QuitBtn.onClick.RemoveListener(QuiteBtn);
         UIGlobalEvent.Dispatcher.Remove((byte)UIEventType.OpenMainView, OpenView);
 
         view = null;
@@ -45,22 +45,25 @@ public sealed class MainPanel : IUIPanel
 
     }
 
-
+    void StartBtn()
+    {
+        Hide();
+    }
     void OpenView(byte type)
     {
         Hide();
         UIPanelFactory.ShowPanelAsync(UIPanelType.ArchivesView);
     }
-    void Contuine()
+    void ContuineBtn()
     {
         Hide();
         //加载上次的存档
     }
-    void Info()
+    void InfoBtn()
     {
         Hide();
     }
-    void OnQuiteBtn()
+    void QuiteBtn()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

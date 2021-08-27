@@ -94,6 +94,7 @@ public enum UIPanelType
     None = 0,
     MainPanel,
     ArchivesView,
+    BattleView,
 }
 
 

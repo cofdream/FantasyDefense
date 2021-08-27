@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -150,16 +150,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 835542719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_PointAction: {fileID: 1322439809956189879, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_MoveAction: {fileID: 88737275074572353, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_SubmitAction: {fileID: -1356547515764764533, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_CancelAction: {fileID: -1920163379895997004, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_LeftClickAction: {fileID: -3142582745129468461, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_MiddleClickAction: {fileID: -7773062287787341379, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_RightClickAction: {fileID: 6730484475394531224, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_ScrollWheelAction: {fileID: 1284865856488548978, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -3099085847425042440, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 596302898335466767, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &835542721
 MonoBehaviour:
   m_ObjectHideFlags: 0
