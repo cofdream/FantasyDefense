@@ -10,6 +10,7 @@ public class UIPanelFactory : MonoBehaviour
     private struct PanelConfig
     {
         public string[] ViewPath;
+        public ViewBase[] ViewPrefabs;
     }
 
     private delegate IUIPanel CreatePanel();
@@ -24,7 +25,9 @@ public class UIPanelFactory : MonoBehaviour
     {
         int index = (int)type;
 
-        var viewPrefab = AssetDatabase.LoadAssetAtPath<ViewBase>(instance.panelConfig.ViewPath[index]);
+        //var viewPrefab = AssetDatabase.LoadAssetAtPath<ViewBase>(instance.panelConfig.ViewPath[index]);
+        var viewPrefab = instance.panelConfig.ViewPrefabs[index];
+
         IView view = Instantiate(viewPrefab, instance.rootTransform);
 
         // ·´Éä
@@ -83,7 +86,9 @@ public class UIPanelFactory : MonoBehaviour
             CreatePanels = new CreatePanel[]
             {
                 ()=>{ return null; },
-                ()=>{ return new MainPanel(); }
+                ()=>{ return new MainPanel(); },
+                ()=>{ return new ArchivePanel(); },
+                ()=>{ return new BattlePanel(); },
             };
 
         }

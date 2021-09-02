@@ -19,7 +19,7 @@ public sealed class MainPanel : IUIPanel
         view.ContuineBtn.onClick.AddListener(ContuineBtn);
         view.InfoBtn.onClick.AddListener(InfoBtn);
         view.QuitBtn.onClick.AddListener(this.QuiteBtn);
-        UIGlobalEvent.Dispatcher.Add((byte)UIEventType.OpenMainView, OpenView);
+        //UIGlobalEvent.Dispatcher.Add((byte)UIEventType.OpenMainView, OpenView);
     }
     private void DisposeView()
     {
@@ -27,7 +27,7 @@ public sealed class MainPanel : IUIPanel
         view.ContuineBtn.onClick.RemoveListener(ContuineBtn);
         view.InfoBtn.onClick.RemoveListener(InfoBtn);
         view.QuitBtn.onClick.RemoveListener(QuiteBtn);
-        UIGlobalEvent.Dispatcher.Remove((byte)UIEventType.OpenMainView, OpenView);
+        //UIGlobalEvent.Dispatcher.Remove((byte)UIEventType.OpenMainView, OpenView);
 
         view = null;
     }
@@ -48,11 +48,13 @@ public sealed class MainPanel : IUIPanel
     void StartBtn()
     {
         Hide();
+        UIPanelFactory.ShowPanel(UIPanelType.BattleView);
+        BattleManager.Instance.StartBattle();
     }
     void OpenView(byte type)
     {
-        Hide();
-        UIPanelFactory.ShowPanelAsync(UIPanelType.ArchivesView);
+        //Hide();
+        //UIPanelFactory.ShowPanelAsync(UIPanelType.ArchivesView);
     }
     void ContuineBtn()
     {
