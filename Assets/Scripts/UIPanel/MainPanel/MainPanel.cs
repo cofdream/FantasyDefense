@@ -48,7 +48,6 @@ public sealed class MainPanel : IUIPanel
     void StartBtn()
     {
         Hide();
-        UIPanelFactory.ShowPanel(UIPanelType.BattleView);
         BattleManager.Instance.StartBattle();
     }
     void OpenView(byte type)

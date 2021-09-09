@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
+    
     void Awake()
     {
 
     }
     private void Start()
     {
-        UIPanelFactory.GetPanel(UIPanelType.MainPanel).Show();
+
+        
     }
 
     void Update()
