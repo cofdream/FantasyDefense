@@ -69,7 +69,7 @@ public sealed class MainPanel : IUIPanel
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.isPlaying = false;
+        Application.Quit();
 #endif
     }
 }

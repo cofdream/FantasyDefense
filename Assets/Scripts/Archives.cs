@@ -13,7 +13,7 @@ public class Archives
 #if UNITY_EDITOR
         archivesRootPath = Directory.GetParent(Application.dataPath).FullName + "/Archives/";
 #else
-        archivePath = Application.persistentDataPath + "Archives/";
+        archivesRootPath = Application.persistentDataPath + "Archives/";
 #endif
 
         LoadArchives();

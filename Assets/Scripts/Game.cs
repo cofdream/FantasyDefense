@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    
+
     void Awake()
     {
 
     }
     private void Start()
     {
+        FindObjectOfType<UnityEngine.InputSystem.UI.InputSystemUIInputModule>().deselectOnBackgroundClick = false;
 
-        
+        FindObjectOfType<UIStart>(true).Show();
     }
 
     void Update()
@@ -21,8 +22,4 @@ public class Game : MonoBehaviour
 
     }
 
-    public static void EnterGame(int selectArchive)
-    {
-
-    }
 }
