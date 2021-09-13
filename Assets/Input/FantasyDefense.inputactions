@@ -769,6 +769,44 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Logo",
+            "id": "35d4ac70-9823-47f5-88c3-c254c12f1973",
+            "actions": [
+                {
+                    "name": "EnterGame",
+                    "type": "Button",
+                    "id": "f486a2c8-361d-4f85-b1f9-22ef43591c20",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ee8ac272-89be-4ac5-a2b1-822190e461bb",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "EnterGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78959355-1bf6-4d4f-a3dc-3ee7868538ee",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "EnterGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
