@@ -207,9 +207,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1028290564}
   - component: {fileID: 1028290565}
-  - component: {fileID: 1028290566}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LogoScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,92 +240,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e6ab83e647a1741b8563a12a258221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1028290566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028290563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: fbeea9f35f1b9804f95f8fd991b85f14, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9a016202-55b4-47ab-aec0-d817a880747f
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9508a745-42b7-4437-957c-07d6c1e93e36
-    m_ActionName: Player/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: acced1c4-ea4c-4f00-879c-b888e040e866
-    m_ActionName: Player/Fire[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dffab15a-bdcc-47c5-9032-6d37f173153c
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fc464ad7-8c74-4de4-89ea-75770da26431
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 06d8f424-b0cb-4c9c-a8a6-61408ef55985
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8fc59aaf-ee30-4ead-814f-a65180c36310
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4739debc-23ca-47a7-a691-1dbd29dd34f2
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cdbda48b-356f-4f8d-b576-d9399ce37ef2
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3c90cbc0-d2a0-4668-99ae-16e4696d65da
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 20514bd1-7600-45bf-ad48-faa608eb90e9
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6b4a1f98-a451-4b41-b883-441c216f56d0
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 38e42947-774b-45a8-bafa-a218f8a20fba
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f486a2c8-361d-4f85-b1f9-22ef43591c20
-    m_ActionName: Logo/EnterGame[/Keyboard/anyKey]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Logo
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  enterInputAction:
+    m_Name: Enter Input
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 8b2b5474-6cb2-47f1-a2b0-23d8bb5f2d27
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f39f8003-ff2a-43fd-b46c-69ed5fe98a22
+      m_Path: <Keyboard>/anyKey
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Enter Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: fe5f206f-9f19-41df-82f1-6bfba66bc9bd
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Enter Input
+      m_Flags: 0
+  mainScene: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
 --- !u!1 &1287303353
 GameObject:
   m_ObjectHideFlags: 0

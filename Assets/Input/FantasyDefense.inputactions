@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Setting",
+                    "type": "Button",
+                    "id": "ab94826c-b9a6-4c0d-bb03-b209d17ec69e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -248,6 +256,17 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a51d1bde-5291-4e8a-bb4c-9cd2c929cd5c",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Setting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -765,44 +784,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Logo",
-            "id": "35d4ac70-9823-47f5-88c3-c254c12f1973",
-            "actions": [
-                {
-                    "name": "EnterGame",
-                    "type": "Button",
-                    "id": "f486a2c8-361d-4f85-b1f9-22ef43591c20",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "ee8ac272-89be-4ac5-a2b1-822190e461bb",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "EnterGame",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "78959355-1bf6-4d4f-a3dc-3ee7868538ee",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "EnterGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

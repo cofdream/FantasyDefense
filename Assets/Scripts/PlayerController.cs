@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask SolideObjectLayerMask;
     public LayerMask LongGrassLayerMask;
 
+    internal void Portal(int portalMapId)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public LayerMask TriggersLayerMask;
 
     private bool isMoving;
     private Vector3 moveTargetPosition;
@@ -29,7 +35,7 @@ public class PlayerController : MonoBehaviour
             Moving(moveTargetPosition, MoveSpeed);
         }
 
-        animator.SetBool("Walk", Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0);
+        //animator.SetBool("Walk", Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0);
     }
 
 
@@ -47,7 +53,7 @@ public class PlayerController : MonoBehaviour
             // ÒÆ¶¯
             moveTargetPosition = transform.position + new Vector3(x, 0, 0);
 
-            if (IsWalkable(moveTargetPosition))
+            if (IsWalkable(moveTargetPosition + new Vector3(0, 0.5f, 0)))
             {
                 isMoving = true;
                 Moving(moveTargetPosition, MoveSpeed);
@@ -55,12 +61,14 @@ public class PlayerController : MonoBehaviour
 
             animator.SetFloat("X", x);
             animator.SetFloat("Y", 0);
+
+            animator.SetBool("Walk", true);
         }
         else if (y != 0)
         {
             moveTargetPosition = transform.position + new Vector3(0, y, 0);
 
-            if (IsWalkable(moveTargetPosition))
+            if (IsWalkable(moveTargetPosition + new Vector3(0, 0.5f, 0)))
             {
                 isMoving = true;
                 Moving(moveTargetPosition, MoveSpeed);
@@ -68,6 +76,12 @@ public class PlayerController : MonoBehaviour
 
             animator.SetFloat("X", 0);
             animator.SetFloat("Y", y);
+
+            animator.SetBool("Walk", true);
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
         }
     }
     private void Moving(Vector3 targetPostion, float speed)
@@ -77,7 +91,8 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
             transform.position = targetPostion;
 
-            CheckForEncounters();
+            animator.SetBool("Walk", false);
+            MoveOver();
         }
         else
         {
@@ -87,13 +102,27 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalkable(Vector3 targetPosition)
     {
-        if (Physics2D.OverlapCircle(targetPosition, 0.2f, SolideObjectLayerMask) != null)
+        if (Physics2D.OverlapCircle(targetPosition, 0.3f, SolideObjectLayerMask) != null)
         {
             return false;
         }
         return true;
     }
 
+    private void MoveOver()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll((transform.position + new Vector3(0, 0.5f, 0)), 0.4f, TriggersLayerMask);
+
+        foreach (var collider in colliders)
+        {
+            var playerTriggerable = collider.GetComponent<IPlayerTriggerable>();
+            if (playerTriggerable != null)
+            {
+                playerTriggerable.OnPlayerTriggerable(this);
+            }
+        }
+
+    }
     private void CheckForEncounters()
     {
         if (Physics2D.OverlapCircle(transform.position, 0.3f, LongGrassLayerMask))
@@ -111,7 +140,9 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
         if (x != 0 || y != 0)
         {
-            if (Physics2D.OverlapCircle(moveTargetPosition, 0.2f, SolideObjectLayerMask) != null)
+            var point = moveTargetPosition + new Vector3(0, 0.5f, 0);
+            float radius = 0.3f;
+            if (Physics2D.OverlapCircle(point, radius, SolideObjectLayerMask) != null)
             {
                 Gizmos.color = Color.red;
             }
@@ -120,7 +151,7 @@ public class PlayerController : MonoBehaviour
                 Gizmos.color = Color.green;
             }
 
-            Gizmos.DrawSphere(moveTargetPosition, 0.2f);
+            Gizmos.DrawSphere(point, radius);
         }
     }
 }
