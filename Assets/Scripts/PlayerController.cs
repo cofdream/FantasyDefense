@@ -6,15 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed;
     public Animator animator;
-    public LayerMask SolideObjectLayerMask;
-    public LayerMask LongGrassLayerMask;
 
-    internal void Portal(int portalMapId)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public LayerMask TriggersLayerMask;
+    public LayerMasks LayerMasks;
 
     private bool isMoving;
     private Vector3 moveTargetPosition;
@@ -102,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalkable(Vector3 targetPosition)
     {
-        if (Physics2D.OverlapCircle(targetPosition, 0.3f, SolideObjectLayerMask) != null)
+        if (Physics2D.OverlapCircle(targetPosition, 0.3f, LayerMasks.SolideObjectLayerMask) != null)
         {
             return false;
         }
@@ -111,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveOver()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll((transform.position + new Vector3(0, 0.5f, 0)), 0.4f, TriggersLayerMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll((transform.position + new Vector3(0, 0.5f, 0)), 0.4f, LayerMasks.TriggersLayerMask);
 
         foreach (var collider in colliders)
         {
@@ -125,13 +118,19 @@ public class PlayerController : MonoBehaviour
     }
     private void CheckForEncounters()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.3f, LongGrassLayerMask))
+        if (Physics2D.OverlapCircle(transform.position, 0.3f, LayerMasks.LongGrassLayerMask))
         {
             if (Random.Range(1, 101) <= 10)
             {
                 Debug.Log("Encounter something.");
             }
         }
+    }
+
+
+    public void Portal(int portalMapId)
+    {
+        Debug.Log("´«ËÍ");
     }
 
     private void OnDrawGizmos()
@@ -142,7 +141,7 @@ public class PlayerController : MonoBehaviour
         {
             var point = moveTargetPosition + new Vector3(0, 0.5f, 0);
             float radius = 0.3f;
-            if (Physics2D.OverlapCircle(point, radius, SolideObjectLayerMask) != null)
+            if (Physics2D.OverlapCircle(point, radius, LayerMasks.SolideObjectLayerMask) != null)
             {
                 Gizmos.color = Color.red;
             }
@@ -154,4 +153,5 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawSphere(point, radius);
         }
     }
+
 }

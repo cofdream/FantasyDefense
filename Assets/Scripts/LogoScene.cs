@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 [DisallowMultipleComponent]
 public class LogoScene : MonoBehaviour
 {
+    // todo 使用ScriptableObjects来保存数据
     [SerializeField] InputAction enterInputAction;
     [SerializeField] Object mainScene;
 
