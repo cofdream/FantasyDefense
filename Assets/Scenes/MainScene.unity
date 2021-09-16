@@ -17414,6 +17414,7 @@ GameObject:
   - component: {fileID: 714077237}
   - component: {fileID: 714077239}
   - component: {fileID: 714077238}
+  - component: {fileID: 714077240}
   m_Layer: 0
   m_Name: PlayerUnit
   m_TagString: Untagged
@@ -17478,6 +17479,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714077236}
   m_CullTransparentMesh: 1
+--- !u!114 &714077240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714077236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c6ba67abf148748b90b8b1ef3a77fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  petBase: {fileID: 0}
+  level: 0
+  isPlayerUnit: 1
 --- !u!1 &719077650
 GameObject:
   m_ObjectHideFlags: 0
@@ -19547,7 +19563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1644822132}
   m_Layer: 0
-  m_Name: BttleSystem
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
