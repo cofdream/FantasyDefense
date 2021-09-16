@@ -72,18 +72,19 @@ namespace DA.AssetLoad
                     LoadState = AssetLoadState.Loading;
 
                     string abName = ABManifest.GetAssetBundleByAssetPath(assetPath);
-                    var assetBundle = AssetBundle.LoadFromFile(abName);
+                    var assetBundle = assetLoader.LoadAsset<AssetBundle>(abName);
 
-                    if (loadType.Equals(typeAB) == false)
-                    {
-                        asset = assetBundle.LoadAsset(ABManifest.GetAssetNameByAssetPath(this.assetPath), loadType);
-                    }
-
+                    //必须先加载依赖，后加载具体asset文件
                     var directDependencies = ABManifest.AssetBundleManifest.GetDirectDependencies(System.IO.Path.GetFileName(abName));
                     totalDirectDependecntCount = directDependencies.Length;
                     foreach (var directDependent in directDependencies)
                     {
                         assetLoader.LoadAssetBundle(directDependent);
+                    }
+
+                    if (loadType.Equals(typeAB) == false)
+                    {
+                        asset = assetBundle.LoadAsset(ABManifest.GetAssetNameByAssetPath(this.assetPath), loadType);
                     }
 
                     LoadState = AssetLoadState.Loaded;

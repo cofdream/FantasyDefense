@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace DA.AssetLoad
 {
+    // bug assetbundle 由 asset 加载 会有问题
+    // assetbundle 内加载不存在的文件，没有报错，添加报错判断，如：1.文件名没错，但类型不存在。  2.文件名错误
     public class AssetLoader
     {
         private static ObjectPool.ObjectPool<AssetLoader> asserloaderPool;
@@ -42,7 +44,7 @@ namespace DA.AssetLoad
                 onLoaded?.Invoke(asset as T);
             });
         }
-        public void LoadAssetBundle(string assetName)
+        public Object LoadAssetBundle(string assetName)
         {
             IAssetLoad assetLoad = GetIAssetLoad(assetName);
 
@@ -54,6 +56,8 @@ namespace DA.AssetLoad
 
             assetLoad.Retain();
             assetLoad.LoadAsset();
+
+            return assetLoad.Asset;
         }
         public void LoadAssetBundleSync(string assetName, System.Action<Object> onLoaded)
         {
@@ -86,6 +90,7 @@ namespace DA.AssetLoad
             return null;
         }
 
+
         public void Unload(string assetName)
         {
             for (int i = 0; i < assetLoadList.Count; i++)
@@ -100,6 +105,7 @@ namespace DA.AssetLoad
             Debug.LogError("卸载资源失败:" + assetName);
         }
 
+
         public void UnloadAll()
         {
             foreach (var item in assetLoadList)
@@ -108,6 +114,7 @@ namespace DA.AssetLoad
             }
             assetLoadList.Clear();
         }
+
 
         public void ReleaseAssetLoader()
         {

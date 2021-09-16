@@ -51,6 +51,7 @@ public class LogoScene : MonoBehaviour
         SceneManager.SetActiveScene(scene);
         SceneManager.UnloadSceneAsync("LogoScene", UnloadSceneOptions.None);
 #else
+        yield return null;
         SceneManager.LoadScene("MainScene", LoadSceneMode.Additive);
 #endif
     }

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour, IPlayerTriggerable
 {
-    public int PortalMapId;
+    public LevelBase OutLevelBase;
     void IPlayerTriggerable.OnPlayerTriggerable(PlayerController player)
     {
-        player.Portal(PortalMapId);       
+        Mask.I.Mask1();
+
+
+        player.Portal(1);
     }
 }

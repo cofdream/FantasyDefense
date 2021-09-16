@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-       
+
     }
 
     void FixedUpdate()
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         {
             rigidbody2D.velocity = Vector2.zero;
         }
-       
+
     }
 
     public void Damage(float damage)
