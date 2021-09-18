@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
-public class UIStart : MonoBehaviour, IMoveHandler
+public class UIStart : MonoBehaviour, IUIPanel
 {
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] Button btnStart;
@@ -61,15 +60,21 @@ public class UIStart : MonoBehaviour, IMoveHandler
         canvasGroup.alpha = 0;
     }
 
-    public void OnMove(AxisEventData eventData)
-    {
-        Debug.Log(1);
-    }
-
-
     private void SelectSelectable(Selectable selectable)
     {
         var eventSystem = FindObjectOfType<EventSystem>();
         btnStart.OnSelect(new BaseEventData(eventSystem) { selectedObject = btnStart.gameObject });
+    }
+
+    void IUIPanel.Init(IView view)
+    {
+    }
+
+    void IUIPanelControl.Show()
+    {
+    }
+
+    void IUIPanelControl.Hide()
+    {
     }
 }

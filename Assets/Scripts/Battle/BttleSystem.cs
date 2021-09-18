@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class BttleSystem : MonoBehaviour
 {
-    public BattleUnit battleUnit;
-    
+    public BattleUnit playerUnit;
+    public BattleUnit TargetUnit;
 
-    //public  void ShowPlayer()
-    //{
+    public static BttleSystem I { get; private set; }
 
-    //}
+    private void Awake()
+    {
+        if (I == null) I = this;
+    }
 
-    //public void Quit
+    public void StartBattle()
+    {
+
+    }
+
 }

@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Setting",
+                    "name": "Menu",
                     "type": "Button",
                     "id": "ab94826c-b9a6-4c0d-bb03-b209d17ec69e",
                     "expectedControlType": "Button",
@@ -266,7 +266,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Setting",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

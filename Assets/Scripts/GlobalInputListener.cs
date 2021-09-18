@@ -12,7 +12,7 @@ public class GlobalInputListener : MonoBehaviour
         //FindObjectOfType<UnityEngine.InputSystem.UI.InputSystemUIInputModule>().deselectOnBackgroundClick = false;
         //FindObjectOfType<UIStart>(true).Show();
 
-        inputAction = inputActions.FindActionMap("Player").FindAction("Setting");
+        inputAction = inputActions.FindActionMap("Player").FindAction("Menu");
     }
 
     private void Start()
@@ -22,8 +22,9 @@ public class GlobalInputListener : MonoBehaviour
 
     private void InputAction_started(InputAction.CallbackContext context)
     {
-        //Open setting window
-        Debug.Log("Open SettingWindow");
+        var menu = FindObjectOfType<UIMenu>(); ;
+        if (menu != null)
+            menu.SwitchActive();
     }
 
     private void OnEnable()

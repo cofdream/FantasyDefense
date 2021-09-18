@@ -1,17 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public static class Command
 {
     public static void EnterGame()
     {
-        // ѡ���ɫ
+        // 选择角色
 
     }
     public static void ContuinGame()
     {
-        
+
     }
     public static void QuitGame()
     {

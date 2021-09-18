@@ -12,9 +12,31 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private Vector3 moveTargetPosition;
 
-    void Start()
+    private PlayerArchive playerArchive;
+    private void Start()
     {
+        //读取存档
+        //创建角色
+        //打开存档时所在的地图，设置坐标为存档时的坐标
+        //加载当前任务
 
+        playerArchive = PlayerArchive.Load("Player");
+
+        LevelSystem.LoadLevel(playerArchive.LevelId);
+        transform.position = playerArchive.Position;
+        animator.SetFloat("X", playerArchive.X);
+        animator.SetFloat("Y", playerArchive.Y);
+    }
+
+    private void OnDestroy()
+    {
+        //Todo放到Save
+        playerArchive.LevelId = LevelSystem.CurrentLevelId;
+        playerArchive.Position = transform.position;
+        playerArchive.X = animator.GetFloat("X");
+        playerArchive.Y = animator.GetFloat("Y");
+
+        PlayerArchive.Save(playerArchive, "Player");
     }
 
     void Update()
@@ -27,11 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             Moving(moveTargetPosition, MoveSpeed);
         }
-
-        //animator.SetBool("Walk", Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0);
     }
-
-
 
     private void CheckMove()
     {
@@ -114,7 +132,6 @@ public class PlayerController : MonoBehaviour
                 playerTriggerable.OnPlayerTriggerable(this);
             }
         }
-
     }
     private void CheckForEncounters()
     {
@@ -153,5 +170,4 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawSphere(point, radius);
         }
     }
-
 }
