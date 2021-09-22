@@ -17637,6 +17637,7 @@ Transform:
   - {fileID: 262988748520951278}
   - {fileID: 262988748259103902}
   - {fileID: 4613115280177779928}
+  - {fileID: 9209414780153885103}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17652,6 +17653,68 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &3613818617911224813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9209414780153885103}
+  - component: {fileID: 6607924255339089223}
+  - component: {fileID: 3827238452925110425}
+  m_Layer: 8
+  m_Name: 1001_Portal_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9209414780153885103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613818617911224813}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 9.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 262988749659797494}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &6607924255339089223
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613818617911224813}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
+--- !u!114 &3827238452925110425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613818617911224813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1f5f1420078aa4e853918be04be4eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurMap: {fileID: 0}
+  OutLevelBase: {fileID: 0}
 --- !u!1 &8715353297299484013
 GameObject:
   m_ObjectHideFlags: 0
@@ -17665,7 +17728,7 @@ GameObject:
   - component: {fileID: 229133103894414705}
   - component: {fileID: 1669095778817302550}
   - component: {fileID: 1918741806815749406}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LongGrass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18724,7 +18787,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5516528e127c140b2324303af4f93d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 0
-  encountersPets:
-  - {fileID: 11400000, guid: d017a961b0ecc1f4d873c04c1a3cb3a3, type: 2}
-  - {fileID: 0}
+  probability: 10
+  encountersPet: {fileID: 11400000, guid: 73444476e1ad30f4481b4995d02d4b9b, type: 2}

@@ -29,7 +29,7 @@ public class LevelSystem : MonoBehaviour
                     Destroy(i.currentLevel);
                 }
 
-                i.currentLevel = GameObject.Instantiate(LevelBase.LevelPrefab);
+                i.currentLevel = GameObject.Instantiate(LevelBase.gameObject);
                 CurrentLevelId = levelId;
             }
         }

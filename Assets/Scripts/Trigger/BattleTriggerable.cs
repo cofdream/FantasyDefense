@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class BattleTriggerable : MonoBehaviour, IPlayerTriggerable
 {
-    [SerializeField, Range(0, 100)] int probability;
-    [SerializeField] EncountersPet[] encountersPets;
+    [SerializeField, Range(0, 100)] uint probability;
+    [SerializeField] EncountersPetArray encountersPet;
 
     public void OnPlayerTriggerable(PlayerController player)
     {
-        if (Random.Range(0, 101) <= probability)
-        {
 
-            int index = Random.Range(0, encountersPets.Length);
-            encountersPets[index].GetPet();
+    //    tilemap.SetTile(tilemap.WorldToCell(player.transform.position), null);
+
+        if (Random.Range(1, 101) <= probability)
+        {
+            encountersPet.GetPet();
+            Debug.Log(1);
         }
     }
 }
