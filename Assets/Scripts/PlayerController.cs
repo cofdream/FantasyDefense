@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveTargetPosition;
 
     private PlayerArchive playerArchive;
+    private Vector2 currentTowards;
+
     private void Start()
     {
         //读取存档
@@ -26,6 +30,10 @@ public class PlayerController : MonoBehaviour
         transform.position = playerArchive.Position;
         animator.SetFloat("X", playerArchive.X);
         animator.SetFloat("Y", playerArchive.Y);
+
+
+        moveTargetPosition.x = playerArchive.X;
+        moveTargetPosition.y = playerArchive.Y;
     }
 
     private void OnDestroy()
@@ -39,39 +47,52 @@ public class PlayerController : MonoBehaviour
         PlayerArchive.Save(playerArchive, "Player");
     }
 
+    private Vector2 movement;
+
     void Update()
     {
         if (!isMoving)
         {
-            CheckMove();
+            CheckMove(movement);
         }
         else
+
         {
             Moving(moveTargetPosition, MoveSpeed);
         }
     }
 
-    private void CheckMove()
+    private void CheckMove(Vector2 movement)
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        float x = movement.x;
+        float y = movement.y;
 
         // 防止对角线移动
         if (x != 0)
         {
+            y = 0;
+
+            if (moveTargetPosition.normalized.x == x)
+            {
+                moveTargetPosition = transform.position + new Vector3(x, 0, 0);
+
+                if (IsWalkable(moveTargetPosition))
+                {
+                    isMoving = true;
+                    Moving(moveTargetPosition, MoveSpeed);
+                }
+            }
+            else
+            {
+                moveTargetPosition.x *= x;
+                animator.SetFloat("X", x);
+                animator.SetFloat("Y", 0);
+            }
+
+
             // todo
             // 旋转面向
             // 移动
-            moveTargetPosition = transform.position + new Vector3(x, 0, 0);
-
-            if (IsWalkable(moveTargetPosition + new Vector3(0, 0.5f, 0)))
-            {
-                isMoving = true;
-                Moving(moveTargetPosition, MoveSpeed);
-            }
-
-            animator.SetFloat("X", x);
-            animator.SetFloat("Y", 0);
 
             animator.SetBool("Walk", true);
         }
@@ -79,7 +100,7 @@ public class PlayerController : MonoBehaviour
         {
             moveTargetPosition = transform.position + new Vector3(0, y, 0);
 
-            if (IsWalkable(moveTargetPosition + new Vector3(0, 0.5f, 0)))
+            if (IsWalkable(moveTargetPosition))
             {
                 isMoving = true;
                 Moving(moveTargetPosition, MoveSpeed);
@@ -122,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveOver()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll((transform.position + new Vector3(0, 0.5f, 0)), 0.4f, LayerMasks.TriggersLayerMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll((transform.position), 0.4f, LayerMasks.TriggersLayerMask);
 
         foreach (var collider in colliders)
         {
@@ -150,13 +171,19 @@ public class PlayerController : MonoBehaviour
         Debug.Log("传送");
     }
 
+    public void OnMove(UnityEngine.InputSystem.InputValue context)
+    {
+        movement = context.Get<Vector2>();
+    }
+
+
     private void OnDrawGizmos()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         if (x != 0 || y != 0)
         {
-            var point = moveTargetPosition + new Vector3(0, 0.5f, 0);
+            var point = moveTargetPosition;
             float radius = 0.3f;
             if (Physics2D.OverlapCircle(point, radius, LayerMasks.SolideObjectLayerMask) != null)
             {
