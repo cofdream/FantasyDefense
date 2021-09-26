@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 [DisallowMultipleComponent]
 public class LogoScene : MonoBehaviour
 {
-    // todo Ê¹ÓÃScriptableObjectsÀ´±£´æÊı¾İ
+    // todo ä½¿ç”¨ScriptableObjectsæ¥ä¿å­˜æ•°æ®
     [SerializeField] InputAction enterInputAction;
     [SerializeField] Object mainScene;
 

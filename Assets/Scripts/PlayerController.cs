@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -8,21 +8,20 @@ public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed;
     public Animator animator;
-
     public LayerMasks LayerMasks;
 
-    private bool isMoving;
-    private Vector3 moveTargetPosition;
-
     private PlayerArchive playerArchive;
-    private Vector2 currentTowards;
+
+    private Vector2 movement;
+    private float MoveX;
+    private float MoveY;
 
     private void Start()
     {
-        //¶ÁÈ¡´æµµ
-        //´´½¨½ÇÉ«
-        //´ò¿ª´æµµÊ±ËùÔÚµÄµØÍ¼£¬ÉèÖÃ×ø±êÎª´æµµÊ±µÄ×ø±ê
-        //¼ÓÔØµ±Ç°ÈÎÎñ
+        //è¯»å–å­˜æ¡£
+        //åˆ›å»ºè§’è‰²
+        //æ‰“å¼€å­˜æ¡£æ—¶æ‰€åœ¨çš„åœ°å›¾ï¼Œè®¾ç½®åæ ‡ä¸ºå­˜æ¡£æ—¶çš„åæ ‡
+        //åŠ è½½å½“å‰ä»»åŠ¡
 
         playerArchive = PlayerArchive.Load("Player");
 
@@ -34,103 +33,117 @@ public class PlayerController : MonoBehaviour
 
         moveTargetPosition.x = playerArchive.X;
         moveTargetPosition.y = playerArchive.Y;
+
+
+        isMoving = false;
     }
 
     private void OnDestroy()
     {
-        //Todo·Åµ½Save
+        //Todoæ”¾åˆ°Save
         playerArchive.LevelId = LevelSystem.CurrentLevelId;
         playerArchive.Position = transform.position;
-        playerArchive.X = animator.GetFloat("X");
-        playerArchive.Y = animator.GetFloat("Y");
+        playerArchive.X = MoveX;
+        playerArchive.Y = MoveY;
 
         PlayerArchive.Save(playerArchive, "Player");
     }
 
-    private Vector2 movement;
-
     void Update()
     {
-        if (!isMoving)
-        {
-            CheckMove(movement);
-        }
-        else
-
-        {
-            Moving(moveTargetPosition, MoveSpeed);
-        }
+        Move();
     }
 
-    private void CheckMove(Vector2 movement)
+    private void Move()
     {
-        float x = movement.x;
-        float y = movement.y;
-
-        // ·ÀÖ¹¶Ô½ÇÏßÒÆ¶¯
-        if (x != 0)
-        {
-            y = 0;
-
-            if (moveTargetPosition.normalized.x == x)
-            {
-                moveTargetPosition = transform.position + new Vector3(x, 0, 0);
-
-                if (IsWalkable(moveTargetPosition))
-                {
-                    isMoving = true;
-                    Moving(moveTargetPosition, MoveSpeed);
-                }
-            }
-            else
-            {
-                moveTargetPosition.x *= x;
-                animator.SetFloat("X", x);
-                animator.SetFloat("Y", 0);
-            }
-
-
-            // todo
-            // Ğı×ªÃæÏò
-            // ÒÆ¶¯
-
-            animator.SetBool("Walk", true);
-        }
-        else if (y != 0)
-        {
-            moveTargetPosition = transform.position + new Vector3(0, y, 0);
-
-            if (IsWalkable(moveTargetPosition))
-            {
-                isMoving = true;
-                Moving(moveTargetPosition, MoveSpeed);
-            }
-
-            animator.SetFloat("X", 0);
-            animator.SetFloat("Y", y);
-
-            animator.SetBool("Walk", true);
-        }
-        else
+        if (movement == Vector2.zero)
         {
             animator.SetBool("Walk", false);
         }
-    }
-    private void Moving(Vector3 targetPostion, float speed)
-    {
-        if ((transform.position - targetPostion).sqrMagnitude < Mathf.Epsilon)
-        {
-            isMoving = false;
-            transform.position = targetPostion;
-
-            animator.SetBool("Walk", false);
-            MoveOver();
-        }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPostion, speed * Time.deltaTime);
+            MoveX = movement.x;
+            MoveY = movement.y;
+
+            animator.SetFloat("X", MoveX);
+            animator.SetFloat("Y", MoveY);
+
+            animator.SetBool("Walk", true);
+
+            transform.position += new Vector3(MoveX, MoveY, 0) * MoveSpeed * Time.deltaTime;
         }
     }
+
+
+    //private void CheckMove(Vector2 movement)
+    //{
+    //    float x = movement.x;
+    //    float y = movement.y;
+
+    //    // é˜²æ­¢å¯¹è§’çº¿ç§»åŠ¨
+    //    if (x != 0)
+    //    {
+    //        y = 0;
+
+    //        if (moveTargetPosition.normalized.x == x)
+    //        {
+    //            moveTargetPosition = transform.position + new Vector3(x, 0, 0);
+
+    //            if (IsWalkable(moveTargetPosition))
+    //            {
+    //                isMoving = true;
+    //                Moving(moveTargetPosition, MoveSpeed);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            moveTargetPosition.x *= x;
+    //            animator.SetFloat("X", x);
+    //            animator.SetFloat("Y", 0);
+    //        }
+
+
+    //        // todo
+    //        // æ—‹è½¬é¢å‘
+    //        // ç§»åŠ¨
+
+    //        animator.SetBool("Walk", true);
+    //    }
+    //    else if (y != 0)
+    //    {
+    //        moveTargetPosition = transform.position + new Vector3(0, y, 0);
+
+    //        if (IsWalkable(moveTargetPosition))
+    //        {
+    //            isMoving = true;
+    //            Moving(moveTargetPosition, MoveSpeed);
+    //        }
+
+    //        animator.SetFloat("X", 0);
+    //        animator.SetFloat("Y", y);
+
+    //        animator.SetBool("Walk", true);
+    //    }
+    //    else
+    //    {
+    //        animator.SetBool("Walk", false);
+    //    }
+    //}
+    //private void Moving(Vector3 targetPostion, float speed)
+    //{
+    //    if ((transform.position - targetPostion).sqrMagnitude < Mathf.Epsilon)
+    //    {
+    //        isMoving = false;
+    //        transform.position = targetPostion;
+
+    //        animator.SetBool("Walk", false);
+    //        MoveOver();
+    //    }
+    //    else
+    //    {
+    //        transform.position = Vector3.MoveTowards(transform.position, targetPostion, speed * Time.deltaTime);
+    //    }
+    //}
 
     private bool IsWalkable(Vector3 targetPosition)
     {
@@ -168,7 +181,7 @@ public class PlayerController : MonoBehaviour
 
     public void Portal(int portalMapId)
     {
-        Debug.Log("´«ËÍ");
+        Debug.Log("ä¼ é€");
     }
 
     public void OnMove(UnityEngine.InputSystem.InputValue context)
