@@ -31,11 +31,9 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Y", playerArchive.Y);
 
 
-        moveTargetPosition.x = playerArchive.X;
-        moveTargetPosition.y = playerArchive.Y;
-
-
-        isMoving = false;
+        MoveX = playerArchive.X;
+        MoveY = playerArchive.Y;
+        //isMoving = false;
     }
 
     private void OnDestroy()
@@ -196,7 +194,7 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
         if (x != 0 || y != 0)
         {
-            var point = moveTargetPosition;
+            var point = movement;
             float radius = 0.3f;
             if (Physics2D.OverlapCircle(point, radius, LayerMasks.SolideObjectLayerMask) != null)
             {

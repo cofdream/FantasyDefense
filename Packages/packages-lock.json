@@ -4,8 +4,19 @@
       "version": "https://github.com/cofdream/UnityToolKit.git#upm",
       "depth": 0,
       "source": "git",
-      "dependencies": {},
-      "hash": "9f8e185bb513b9444beb2e879efc378b035f9331"
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "3cccd2119cea636ffd2e51f604fe1982f0ea2498"
+    },
+    "com.cofdream.unitybaseframework": {
+      "version": "https://github.com/cofdream/UnityBaseFramework.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.cofdream.toolkit": "https://github.com/cofdream/DATools.git#upm"
+      },
+      "hash": "a4384a68f5bdd2c46d56012ed9bf03c927815b5e"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -28,7 +39,7 @@
     },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -50,8 +61,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.29",
-      "depth": 0,
+      "version": "1.1.27",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6",
